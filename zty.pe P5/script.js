@@ -1,4 +1,4 @@
-var focus;
+var focus = null;
 var field = [];
 
 var score = 0;
@@ -9,8 +9,6 @@ function setup() {
 
 function draw() {
   background(51);
-
-  focus = null;
 
   for (var i = field.length - 1; i >= 0; i--) {
 
@@ -40,21 +38,6 @@ function draw() {
 
 }
 
-function findAsteroid(code, field) {
-
-  var char = String.fromCharCode(code).toLowerCase();
-
-  for (var i = field.length - 1; i >= 0; i--) {
-
-    if (field[i].text.startsWith(char)) {
-      return field[i];
-    }
-  }
-
-  return null;
-
-}
-
 function keyPressed() {
 
   if (focus) {
@@ -67,6 +50,9 @@ function keyPressed() {
 }
 
 function endgame() {
-  noloop();
+
   console.log("Game Over");
+  noLoop();
 }
+
+

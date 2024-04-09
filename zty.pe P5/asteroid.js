@@ -20,14 +20,22 @@ asteroid.prototype.update = function () {
 
 asteroid.prototype.erode = function (code) {
 
-    var char = String.fromCharCode(code);
-    var l = this.completedText.length + l;
+    var char = String.fromCharCode(code).toLowerCase();
 
-    if (this.text.substring(0, l) === (this.completedText + char)) {
+
+    var l = this.completedText.length + 1;
+    console.log(char, this.completedText.length, l);
+
+    if (this.text.substring(0, l) === this.completedText + char) {
         this.completedText += char;
     }
 
+    console.log(this.text, this.completedText);
+
+    console.log(this.text !== this.completedText);
+
     this.intact = this.text !== this.completedText;
+
 
 };
 
@@ -44,3 +52,17 @@ asteroid.prototype.draw = function () {
     text(this.text, this.pos.x, this.pos.y);
 };
 
+function findAsteroid(code, field) {
+
+    var char = String.fromCharCode(code).toLowerCase();
+
+    for (var i = 0; i < field.length; i++) {
+
+        if (field[i].text.startsWith(char)) {
+            return field[i];
+        }
+    }
+
+    return null;
+
+}
