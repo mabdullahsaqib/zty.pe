@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<title>ZType – Typing Game - Type to Shoot</title>
 	<link rel="shortcut icon" href="media/favicon.png" type="image/png">
 	<link rel="icon" href="media/favicon.png" type="image/png">
-
+	
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@phoboslab" />
 	<meta property="og:url" content="https://zty.pe/" />
@@ -14,8 +13,7 @@
 	<meta property="og:image" content="https://zty.pe/media/ztype-card.png" />
 
 	<style type="text/css">
-		html,
-		body {
+		html,body {
 			background-color: #000;
 			background-image: url(media/background/page.png);
 			color: #555;
@@ -24,38 +22,29 @@
 			padding: 0;
 			font-size: 10pt;
 		}
-
 		a {
 			color: #777;
 			text-decoration: none;
 		}
-
 		a:hover {
 			color: #ccc;
 		}
-
 		.ztype-stats-action {
 			margin-right: 32px;
 			font-size: 14px;
 		}
-
 		.ztype-stats-action img {
 			vertical-align: middle;
 			margin-right: 4px;
 		}
-
-		.ztype-stats-action:hover,
-		#ztype-stats-close:hover {
+		.ztype-stats-action:hover, #ztype-stats-close:hover {
 			cursor: pointer;
 			color: #4dfed2;
 		}
-
-		#ztype-stats-canvas,
-		#ztype-stats-content {
+		#ztype-stats-canvas, #ztype-stats-content {
 			width: 100%;
 			height: 100%;
 		}
-
 		#ztype-stats {
 			position: absolute;
 			left: 0;
@@ -70,12 +59,10 @@
 			width: 2px;
 			transition: width 0.3s ease-in-out;
 		}
-
 		#ztype-stats.expanded {
 			transition: width 0.3s ease-in-out;
 			width: 98%;
 		}
-
 		#ztype-stats-close {
 			position: absolute;
 			right: 0;
@@ -85,17 +72,15 @@
 			text-align: center;
 			height: 64px;
 		}
-
 		#ztype-stats-foot {
 			padding: 16px 32px 0 32px;
 		}
-
+		
 		#ztype-game-canvas {
 			border: 0;
 			z-index: 1000002;
 			box-shadow: 0 0 30px #000;
 		}
-
 		#ztype-byline {
 			font-size: 12px;
 			position: fixed;
@@ -107,11 +92,9 @@
 		html {
 			height: 100%;
 		}
-
 		body {
 			height: 100%;
 		}
-
 		.ztype-game {
 			height: 90vh;
 			display: flex;
@@ -119,16 +102,13 @@
 			align-items: center;
 			color: #000;
 		}
-
 		.ztype-gsense {
 			xbackground-color: #f0f;
 		}
-
 		.ztype-gsense-300x600 {
 			width: 300px;
 			height: 600px;
 		}
-
 		.ztype-gsense-foot {
 			width: 100%;
 			text-align: center;
@@ -137,7 +117,6 @@
 			bottom: 0;
 			left: 0;
 		}
-
 		#ztype-gsense-close {
 			display: none;
 		}
@@ -152,49 +131,42 @@
 			#ztype-byline {
 				bottom: 0;
 			}
-
 			.ztype-gsense-foot {
 				display: none;
-			}
+			}	
 		}
-
 		@media (max-height: 720px) {
 			#ztype-byline {
 				display: none;
 			}
 		}
-
 		@media (max-height: 600px) {
 			.ztype-gsense-300x600 {
 				height: 100vh;
 			}
 		}
-
 		@media (max-width: 1080px) {
 			.ztype-gsense-right {
 				display: none;
 			}
 		}
-
 		@media (max-width: 780px) {
 			.ztype-gsense-left {
 				display: none;
 			}
 		}
-
 		@media (max-height: 920px) {
-			body.ztype-desktop #ztype-game-canvas {
+			body.ztype-desktop #ztype-game-canvas { 
 				max-height: 100vh;
 			}
 		}
-
 		.ztype-mobile .ztype-game {
 			height: 100vh;
 			align-items: flex-start;
 		}
 
 		.ztype-modal-container {
-			background: rgba(0, 0, 0, 0.2);
+			background: rgba(0,0,0,0.2);
 			position: fixed;
 			top: 0;
 			bottom: 0;
@@ -232,7 +204,7 @@
 			margin: auto;
 			width: 90%;
 			background: #fff;
-			box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+			box-shadow: 0 8px 17px 2px rgba(0,0,0,0.14),0 3px 14px 2px rgba(0,0,0,0.12),0 5px 5px -3px rgba(0,0,0,0.2);
 			overflow: hidden;
 		}
 
@@ -250,7 +222,6 @@
 			background-color: #222;
 			z-index: 1000006;
 		}
-
 		#ztype-gsense.ztype-gsense-full #ztype-gsense-close {
 			display: block;
 			position: absolute;
@@ -276,41 +247,32 @@
 			width: 480px;
 			height: 120px;
 		}
-
 		.nfn:hover {
 			opacity: 0.9;
 		}
 
-		body.mobile #ztype-byline {
-			display: none;
-		}
-
-		body.mobile #ztype-gsense {
-			display: none;
-		}
+		body.mobile #ztype-byline { display: none; }
+		body.mobile #ztype-gsense { display: none; }
 	</style>
-	<script type="text/javascript" src="zty.pe --Website script.js" charset="UTF-8"></script>
-	<script async src="https://cdn.fuseplatform.net/publift/tags/2/3355/fuse.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+			<script type="text/javascript" src="ztype.min.js?v19" charset="UTF-8"></script>
+		<script async src="https://cdn.fuseplatform.net/publift/tags/2/3355/fuse.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<script>
 		window.googletag = window.googletag || { cmd: [] };
-		googletag.cmd.push(function () {
+			googletag.cmd.push(function () {
 			googletag.pubads().set("page_url", "https://zty.pe");
 		});
 	</script>
 </head>
-
 <body>
-
+	
 	<div id="ztype-stats">
 		<div id="ztype-stats-content">
 			<div id="ztype-stats-close">&#215;</div>
 			<div><canvas id="ztype-stats-canvas"></canvas></div>
 			<div id="ztype-stats-foot">
-				<span class="ztype-stats-action" id="ztype-stats-share-facebook"><img src="media/ui/fb-button.png" />
-					share on facebook</span>
-				<span class="ztype-stats-action" id="ztype-stats-share-twitter"><img
-						src="media/ui/twitter-button.png" /> share on twitter</span>
+				<span class="ztype-stats-action" id="ztype-stats-share-facebook"><img src="media/ui/fb-button.png"/> share on facebook</span>
+				<span class="ztype-stats-action" id="ztype-stats-share-twitter"><img src="media/ui/twitter-button.png"/> share on twitter</span>
 			</div>
 		</div>
 	</div>
@@ -318,20 +280,24 @@
 	<div class="ztype-game">
 		<div id="ztype-gsense" class="ztype-gsense ztype-gsense-300x600 ztype-gsense-left">
 			<div data-fuse="22995983757"></div>
-			<a id="ztype-gsense-close" href="#"
-				onclick="void(document.getElementById('ztype-gsense').style.display='none');">Play ZType</a>
+			<a id="ztype-gsense-close" href="#" onclick="void(document.getElementById('ztype-gsense').style.display='none');">Play ZType</a>
 		</div>
 		<div>
 			<canvas id="ztype-game-canvas"></canvas>
 			<a class="nfn" href="https://nofatenetmusic.bandcamp.com/album/the-phoboslab-works" target="_blank">
-				<img src="/media/nfn-phoboslab-works-960x480.jpg" />
+				<img src="/media/nfn-phoboslab-works-960x480.jpg"/>
 			</a>
 		</div>
 		<div class="ztype-gsense ztype-gsense-300x600 ztype-gsense-right">
 			<div data-fuse="22996805138"></div>
 		</div>
 	</div>
-
+	<div id="ztype-byline">
+		ZType (c) – <a href="http://phoboslab.org/" target="_blank">phoboslab.org</a>
+		–
+		<a href="#" id="open-feedback-form">feedback</a>
+		–
+		<a href="http://nofatenetmusic.bandcamp.com/album/the-phoboslab-works">soundtrack</a>
+	</div>
 </body>
-
 </html>
