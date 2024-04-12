@@ -1,8 +1,8 @@
-function asteroid(x, y, text) {
+function asteroid(x, y, text, color) {
 
     this.pos = createVector(x, y);
 
-    this.c = 255;
+    this.c = color;
     this.text = text;
     this.size = text.length * 10;
 
@@ -42,7 +42,7 @@ asteroid.prototype.erode = function (code) {
 asteroid.prototype.draw = function () {
 
     fill(this.c);
-    stroke(0);
+    stroke(this.c);
     strokeWeight(4);
     ellipse(this.pos.x, this.pos.y, this.size);
 
