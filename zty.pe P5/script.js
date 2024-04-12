@@ -49,56 +49,52 @@ function draw() {
     }
   }
 
-  if (noise(frameCount) > nap(score, 0, 1000, 0.9, 0.01)) {
 
-    field.push(new asteroid(random(width - 150) + 75, 0, random(words), randomColor()));
+  /*draw score */
+  noStroke();
+  textAlign(RIGHT);
+  textSize(30);
+  fill(255);
+  text(score, 50, height / 2);
 
+}
 
-    /*draw score */
-    noStroke();
-    textAlign(RIGHT);
-    textSize(30);
-    fill(255);
-    text(score, 50, height / 2);
+function randomColor() {
+  return color(random(255), random(255), random(255));
+}
 
+function drawLazer() {
+  if (!focus)
+    return;
+
+  stroke(randomColor());
+  strokeWeight(focus.completedText.length + 1);
+  line(width / 2, height - 50, focus.pos.x, focus.pos.y);
+
+  fill(255);
+  noStroke();
+  textAlign(LEFT);
+  textSize(20);
+  text(focus.completedText, 10, height - 40);
+}
+
+function keyPressed() {
+
+  if (focus) {
+    focus.erode(keyCode);
   }
-
-  function randomColor() {
-    return color(random(255), random(255), random(255));
-  }
-
-  function drawLazer() {
-    if (!focus)
-      return;
-
-    stroke(randomColor());
-    strokeWeight(focus.completedText.length + 1);
-    line(width / 2, height - 50, focus.pos.x, focus.pos.y);
-
-    fill(255);
-    noStroke();
-    textAlign(LEFT);
-    textSize(20);
-    text(focus.completedText, 10, height - 40);
-  }
-
-  function keyPressed() {
-
-    if (focus) {
+  else {
+    focus = findAsteroid(keyCode, field);
+    if (focus)
       focus.erode(keyCode);
-    }
-    else {
-      focus = findAsteroid(keyCode, field);
-      if (focus)
-        focus.erode(keyCode);
-    }
-
   }
 
-  function endgame() {
+}
 
-    console.log("Game Over");
-    noLoop();
-  }
+function endgame() {
+
+  console.log("Game Over");
+  noLoop();
+}
 
 
