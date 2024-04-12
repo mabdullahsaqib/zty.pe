@@ -24,15 +24,15 @@ asteroid.prototype.erode = function (code) {
 
 
     var l = this.completedText.length + 1;
-    console.log(char, this.completedText.length, l);
+    //console.log(char, this.completedText.length, l);
 
     if (this.text.substring(0, l) === this.completedText + char) {
         this.completedText += char;
     }
 
-    console.log(this.text, this.completedText);
+    // console.log(this.text, this.completedText);
 
-    console.log(this.text !== this.completedText);
+    // console.log(this.text !== this.completedText);
 
     this.intact = this.text !== this.completedText;
 
